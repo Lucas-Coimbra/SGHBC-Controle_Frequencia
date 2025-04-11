@@ -4,7 +4,6 @@ body {
   background-color: #ffffff;
   color: #000000;
   min-height: 100vh;
-  /* Remover display flex daqui */
 }
 
 .pagina-container {
@@ -14,7 +13,7 @@ body {
 }
 
 .pagina-consulta {
-  flex: 1; /* Faz o conteúdo expandir e empurrar o footer */
+  flex: 1;
 }
 
 .topper {
@@ -43,26 +42,28 @@ body {
 
 .logo {
   height: 50px;
-  transform: scale(1.5); /* ou até 1.6 */
-  transform-origin: left center; /* Faz o crescimento acontecer da esquerda para não deslocar */
+  transform: scale(1.5);
+  transform-origin: left center;
 }
 
 .top-links {
   display: flex;
-  gap: 4rem; /* aumentado de 2rem para 3rem */
+  gap: 4rem;
+  font-weight: bold;
+}
+
+.link-usuario,
+.link-logout {
+  text-decoration: none;
   font-weight: bold;
 }
 
 .link-usuario {
   color: #000000;
-  font-weight: bold;
-  text-decoration: none;
 }
 
 .link-logout {
   color: #267ff0;
-  font-weight: bold;
-  text-decoration: none;
 }
 
 .barra-busca {
@@ -88,12 +89,10 @@ body {
   cursor: pointer;
 }
 
-/* TABELA FIXA COM SCROLL INTERNO */
 .tabela {
   margin: 2rem;
   border: 1px solid #ccc;
   font-weight: bold;
-  border-radius: 0; /* removida borda arredondada */
   overflow: hidden;
   position: relative;
 }
@@ -102,7 +101,6 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 0.3fr;
   padding: 0.6rem 1rem;
-  margin: 0;
   border-bottom: 1px solid #ccc;
   background-color: #ffffff;
   font-weight: bold;
@@ -114,13 +112,10 @@ body {
 .tabela-linhas {
   max-height: 300px;
   overflow-y: auto;
-  position: relative;
-  padding-top: 0; /* garante que o topo da área da scrollbar encoste na header */
-  margin-top: -1px; /* sutil sobreposição para alinhar perfeitamente com a header */
+  margin-top: -1px;
   z-index: 0;
 }
 
-/* CORRIGINDO AS LINHAS DA TABELA */
 .tabela-linha {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 0.3fr;
@@ -131,18 +126,17 @@ body {
 
 .tabela-linha span.cancelado {
   color: red;
-  font-weight: bold;
 }
 
 .tabela-linhas::-webkit-scrollbar {
   width: 22px;
-  background-color: #f2f2f2; /* fundo claro acinzentado */
+  background-color: #f2f2f2;
 }
 
 .tabela-linhas::-webkit-scrollbar-thumb {
   background-color: #267ff0;
   border-radius: 0;
-  min-height: 40px; /* thumb maior */
+  min-height: 40px;
 }
 
 .tabela-linhas::-webkit-scrollbar-thumb:hover {
@@ -155,12 +149,12 @@ body {
 }
 
 .tabela-linhas::-webkit-scrollbar-button:single-button:vertical:decrement {
-  background: #ecf4ff url("/assets/icons/arrow-up.svg") no-repeat center;
+  background: #ecf4ff url("/assets/arrow-up.svg") no-repeat center;
   background-size: 15px;
 }
 
 .tabela-linhas::-webkit-scrollbar-button:single-button:vertical:increment {
-  background: #ecf4ff url("/assets/icons/arrow-down.svg") no-repeat center;
+  background: #ecf4ff url("/assets/arrow-down.svg") no-repeat center;
   background-size: 15px;
 }
 
@@ -189,7 +183,7 @@ body {
 
 .popup-box {
   background: white;
-  border: 3px solid #267ff0; /* borda azul padrão */
+  border: 3px solid #267ff0;
   padding: 0;
   width: 320px;
   height: 340px;
@@ -220,8 +214,8 @@ body {
 .checkbox-group {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 2rem 1.5rem;
+  gap: 2.5rem;
+  padding: 3rem 1.5rem 2rem;
 }
 
 .checkbox-option {
@@ -236,18 +230,21 @@ body {
   appearance: none;
   width: 18px;
   height: 18px;
-  border: 2px solid #000000;
-  border-radius: 0; /* quadrado */
+  border: 2px solid #000;
+  border-radius: 0;
   position: relative;
   cursor: pointer;
 }
 
 .checkbox-option input[type="radio"]::before {
-  content: "✕"; /* X fino */
+  content: "✕";
   color: #267ff0;
+  font-size: 18px;
+  font-weight: 650;
   position: absolute;
-  left: 1px;
-  font-size: 16px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   visibility: hidden;
 }
 
@@ -265,7 +262,7 @@ body {
 
 footer {
   margin: 1rem 0 1rem 2rem;
-  align-self: flex-start; /* garante que fique à esquerda */
+  align-self: flex-start;
 }
 
 footer a {

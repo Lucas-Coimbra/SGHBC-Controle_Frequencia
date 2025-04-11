@@ -95,7 +95,6 @@ export default function ConsultaPage() {
         status: "Agendado",
       },
     ];
-
     setDados(mockAPI);
   }, []);
 
@@ -187,6 +186,7 @@ export default function ConsultaPage() {
           />
         )}
       </div>
+
       <footer>
         <a href="#">@suporte</a>
       </footer>
