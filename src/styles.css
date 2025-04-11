@@ -4,8 +4,17 @@ body {
   background-color: #ffffff;
   color: #000000;
   min-height: 100vh;
+  /* Remover display flex daqui */
+}
+
+.pagina-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+}
+
+.pagina-consulta {
+  flex: 1; /* Faz o conteúdo expandir e empurrar o footer */
 }
 
 .topper {
@@ -13,7 +22,13 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #ecf4ff;
-  padding: 2rem 2rem 1rem 2rem;
+  padding: 1rem 2rem;
+  gap: 1rem;
+}
+
+.top-left {
+  display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -22,25 +37,32 @@ body {
   border: none;
   background: none;
   cursor: pointer;
+  padding: 0;
+  margin: 0;
 }
 
 .logo {
   height: 50px;
-  margin-left: 0.5rem;
+  transform: scale(1.5); /* ou até 1.6 */
+  transform-origin: left center; /* Faz o crescimento acontecer da esquerda para não deslocar */
 }
 
 .top-links {
   display: flex;
-  gap: 2rem;
+  gap: 4rem; /* aumentado de 2rem para 3rem */
   font-weight: bold;
 }
 
-.top-links span:first-child {
+.link-usuario {
   color: #000000;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-.top-links span:last-child {
+.link-logout {
   color: #267ff0;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .barra-busca {
@@ -53,7 +75,7 @@ body {
 .input-busca {
   padding: 0.5rem;
   border: 1px solid #b3d3fc;
-  border-radius: 20px;
+  border-radius: 8px;
   width: 220px;
 }
 
@@ -62,7 +84,7 @@ body {
   background-color: #267ff0;
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -73,11 +95,12 @@ body {
   font-weight: bold;
   border-radius: 0; /* removida borda arredondada */
   overflow: hidden;
+  position: relative;
 }
 
 .tabela-header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 0.5fr;
+  grid-template-columns: 1fr 1fr 1fr 0.3fr;
   padding: 0.6rem 1rem;
   margin: 0;
   border-bottom: 1px solid #ccc;
@@ -88,17 +111,19 @@ body {
   z-index: 1;
 }
 
-/* SCROLL EM LINHAS */
 .tabela-linhas {
   max-height: 300px;
   overflow-y: auto;
   position: relative;
+  padding-top: 0; /* garante que o topo da área da scrollbar encoste na header */
+  margin-top: -1px; /* sutil sobreposição para alinhar perfeitamente com a header */
+  z-index: 0;
 }
 
 /* CORRIGINDO AS LINHAS DA TABELA */
 .tabela-linha {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 0.5fr;
+  grid-template-columns: 1fr 1fr 1fr 0.3fr;
   padding: 0.3rem 1rem 0.2rem 1rem;
   font-weight: bold;
   color: #267ff0;
@@ -109,83 +134,38 @@ body {
   font-weight: bold;
 }
 
-/* Barra de rolagem da tabela-linhas */
 .tabela-linhas::-webkit-scrollbar {
-  width: 20px;
-  background-color: #c7c4c4; /* tom de cinza mais escuro */
+  width: 22px;
+  background-color: #f2f2f2; /* fundo claro acinzentado */
 }
 
 .tabela-linhas::-webkit-scrollbar-thumb {
   background-color: #267ff0;
   border-radius: 0;
+  min-height: 40px; /* thumb maior */
 }
 
 .tabela-linhas::-webkit-scrollbar-thumb:hover {
-  background-color: #1e66c0; /* tom mais escuro de azul ao passar o cursor pela barra */
+  background-color: #1e66c0;
 }
 
-/* Botão de rolagem */
 .tabela-linhas::-webkit-scrollbar-button {
-  background-color: #267ff0;
   height: 28px;
-  display: block;
-  border: none;
-}
-
-.tabela-linhas::-webkit-scrollbar-button:single-button {
-  height: 10px;
-  background-color: #267ff0;
-  display: block;
+  background-color: transparent;
 }
 
 .tabela-linhas::-webkit-scrollbar-button:single-button:vertical:decrement {
-  background: #267ff0
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M2 6l3-3 3 3' fill='white'/%3E%3C/svg%3E")
-    no-repeat center;
-  background-size: 6px;
+  background: #ecf4ff url("/assets/icons/arrow-up.svg") no-repeat center;
+  background-size: 15px;
 }
 
 .tabela-linhas::-webkit-scrollbar-button:single-button:vertical:increment {
-  background: #267ff0
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M2 4l3 3 3-3' fill='white'/%3E%3C/svg%3E")
-    no-repeat center;
-  background-size: 6px;
-}
-
-/* Setas maiores e azuis */
-.tabela-linhas::-webkit-scrollbar-button:single-button:decrement::before,
-.tabela-linhas::-webkit-scrollbar-button:single-button:increment::before {
-  content: "";
-  display: block;
-  width: 0;
-  height: 0;
-  margin: auto;
-  border-style: solid;
-}
-
-/* Botão superior: seta para cima */
-.tabela-linhas::-webkit-scrollbar-button:single-button:decrement::before {
-  border-width: 10px 8px 0 8px;
-  border-color: #ffffff transparent transparent transparent;
-}
-
-/* Botão inferior: seta para baixo */
-.tabela-linhas::-webkit-scrollbar-button:single-button:increment::before {
-  border-width: 0 8px 10px 8px;
-  border-color: transparent transparent #ffffff transparent;
-}
-
-/* Direção correta — impede clique reverso */
-.tabela-linhas::-webkit-scrollbar-button:single-button:decrement:active {
-  scroll-behavior: smooth;
-}
-
-.tabela-linhas::-webkit-scrollbar-button:single-button:increment:active {
-  scroll-behavior: smooth;
+  background: #ecf4ff url("/assets/icons/arrow-down.svg") no-repeat center;
+  background-size: 15px;
 }
 
 .botao-editar {
-  background-color: #005bb5;
+  background-color: #267ff0;
   color: white;
   padding: 0.4rem 1.25rem;
   border: none;
@@ -284,8 +264,8 @@ body {
 }
 
 footer {
-  margin-top: auto;
-  padding: 1rem 2rem;
+  margin: 1rem 0 1rem 2rem;
+  align-self: flex-start; /* garante que fique à esquerda */
 }
 
 footer a {
