@@ -70,7 +70,8 @@ body {
 .tabela {
   margin: 2rem;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  font-weight: bold;
+  border-radius: 0; /* removida borda arredondada */
   overflow: hidden;
 }
 
@@ -108,23 +109,27 @@ body {
   font-weight: bold;
 }
 
-/* SCROLLBAR ESTILO AZUL CLARA */
+/* Barra de rolagem da tabela-linhas */
 .tabela-linhas::-webkit-scrollbar {
-  width: 12px;
-  background-color: #f1f1f1;
-}
-
-.tabela-linhas::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  width: 20px;
+  background-color: #c7c4c4; /* tom de cinza mais escuro */
 }
 
 .tabela-linhas::-webkit-scrollbar-thumb {
   background-color: #267ff0;
-  border-radius: 10px;
+  border-radius: 0;
 }
 
 .tabela-linhas::-webkit-scrollbar-thumb:hover {
   background-color: #1e66c0; /* tom mais escuro de azul ao passar o cursor pela barra */
+}
+
+/* Botão de rolagem */
+.tabela-linhas::-webkit-scrollbar-button {
+  background-color: #267ff0;
+  height: 28px;
+  display: block;
+  border: none;
 }
 
 .tabela-linhas::-webkit-scrollbar-button:single-button {
@@ -145,6 +150,38 @@ body {
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M2 4l3 3 3-3' fill='white'/%3E%3C/svg%3E")
     no-repeat center;
   background-size: 6px;
+}
+
+/* Setas maiores e azuis */
+.tabela-linhas::-webkit-scrollbar-button:single-button:decrement::before,
+.tabela-linhas::-webkit-scrollbar-button:single-button:increment::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  margin: auto;
+  border-style: solid;
+}
+
+/* Botão superior: seta para cima */
+.tabela-linhas::-webkit-scrollbar-button:single-button:decrement::before {
+  border-width: 10px 8px 0 8px;
+  border-color: #ffffff transparent transparent transparent;
+}
+
+/* Botão inferior: seta para baixo */
+.tabela-linhas::-webkit-scrollbar-button:single-button:increment::before {
+  border-width: 0 8px 10px 8px;
+  border-color: transparent transparent #ffffff transparent;
+}
+
+/* Direção correta — impede clique reverso */
+.tabela-linhas::-webkit-scrollbar-button:single-button:decrement:active {
+  scroll-behavior: smooth;
+}
+
+.tabela-linhas::-webkit-scrollbar-button:single-button:increment:active {
+  scroll-behavior: smooth;
 }
 
 .botao-editar {
